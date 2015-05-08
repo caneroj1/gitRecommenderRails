@@ -11,5 +11,21 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require sprockets-octicons
  *= require_self
  */
+
+// Import bootstrap-sprockets
+@import "bootstrap-sprockets";
+
+// Import lumen variables
+@import "bootswatch/lumen/variables";
+
+// Then bootstrap itself
+@import "bootstrap";
+
+// base css
+@import "base";
+
+// And finally bootswatch style itself
+@import "bootswatch/lumen/bootswatch";
