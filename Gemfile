@@ -13,6 +13,8 @@ gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 # Use postgres for the database.
 gem 'pg'
+# Use octokit for GitHub API integration
+gem 'octokit'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
