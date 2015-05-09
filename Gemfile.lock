@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     arel (6.0.0)
     autoprefixer-rails (5.1.11)
       execjs
@@ -59,8 +60,13 @@ GEM
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
     debug_inspector (0.0.2)
+    dotenv (2.0.1)
+    dotenv-rails (2.0.1)
+      dotenv (= 2.0.1)
     erubis (2.7.0)
     execjs (2.5.2)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     haml (4.0.6)
@@ -93,8 +99,11 @@ GEM
     mini_portile (0.6.2)
     minitest (5.6.1)
     multi_json (1.11.0)
+    multipart-post (2.0.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    octokit (3.8.0)
+      sawyer (~> 0.6.0, >= 0.5.3)
     pg (0.18.1)
     rack (1.6.1)
     rack-test (0.6.3)
@@ -134,6 +143,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
+    sawyer (0.6.0)
+      addressable (~> 2.3.5)
+      faraday (~> 0.8, < 0.10)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -169,9 +181,11 @@ DEPENDENCIES
   bootswatch-rails
   byebug
   coffee-rails (~> 4.1.0)
+  dotenv-rails
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
+  octokit
   pg
   rails (= 4.2.0)
   sass-rails (~> 5.0)
