@@ -1,9 +1,18 @@
+require 'route_constraints/oauth_constraint'
+
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+
+  # Redirect handler for GitHub OAuth
+  get 'redirect', to: "redirects#handle", constraints: OAuthConstraint.new
+  get 'redirect', to: "redirects#error"
+
+  # Singleton Resource for User Profiles
+  resource :profile
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
