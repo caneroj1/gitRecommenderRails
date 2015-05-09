@@ -1,1 +1,5 @@
-%h1 It Worked!
+.col-md-9
+  %h1.text-center Your Repositories
+.col-md-3
+  = image_tag(current_user.avatar_url, class: "img-rounded profile-picture")
+  %h3.user-name= current_user.login
