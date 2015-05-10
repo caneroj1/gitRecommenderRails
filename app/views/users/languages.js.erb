@@ -1,0 +1,15 @@
+$('#user-languages').html("<%= escape_javascript(render partial: 'user_languages' ) %>");
+$('#user-languages-loading').remove();
+<% colors = JSON.parse(File.read("vendor/assets/json/colors.json")) %>
+data = [
+  <% @languages.each do |language| %>
+    {
+      value: <%= language[1] %>,
+      color: "<%= colors[language[0]] %>",
+      highlight: "<%= colors[language[0]] %>",
+      label: "<%= language[0] %>"
+    },
+  <% end %>
+];
+myNewChart = new Chart($('#user-languages-chart').get(0).getContext("2d")).Doughnut(data);
+clearInterval(progress)

@@ -51,6 +51,8 @@ GEM
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
+    chart-js-rails (0.0.9)
+      railties (> 3.1)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -180,6 +182,7 @@ DEPENDENCIES
   bootstrap-sass
   bootswatch-rails
   byebug
+  chart-js-rails
   coffee-rails (~> 4.1.0)
   dotenv-rails
   haml-rails

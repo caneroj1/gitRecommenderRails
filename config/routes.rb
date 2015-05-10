@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   get 'redirect', to: "redirects#error"
 
   # Singleton Resource for User Profiles
-  resource :profile
+  get 'profile', to: "profiles#show"
+
+  get 'languages', to: "users#languages", defaults: { format: :js }
+  get 'repo/languages', to: "repositories#languages", defaults: { format: :js }
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

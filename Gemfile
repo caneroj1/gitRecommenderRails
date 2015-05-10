@@ -15,6 +15,8 @@ gem 'bootswatch-rails'
 gem 'pg'
 # Use octokit for GitHub API integration
 gem 'octokit'
+# Chart.js for pretty graphs ad data viz.
+gem 'chart-js-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
