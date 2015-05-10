@@ -11,9 +11,13 @@ Rails.application.routes.draw do
   get 'redirect', to: "redirects#handle", constraints: OAuthConstraint.new
   get 'redirect', to: "redirects#error"
 
+  # Update user info
+  put '/update', to: "users#update"
+
   # Singleton Resource for User Profiles
   get 'profile', to: "profiles#show"
 
+  # Routes for computing language breakdowns for users and repositories
   get 'languages', to: "users#languages", defaults: { format: :js }
   get 'repo/languages', to: "repositories#languages", defaults: { format: :js }
 

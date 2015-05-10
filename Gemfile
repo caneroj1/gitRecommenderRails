@@ -17,6 +17,8 @@ gem 'pg'
 gem 'octokit'
 # Chart.js for pretty graphs ad data viz.
 gem 'chart-js-rails'
+# Using best in place for in place form fields
+gem 'best_in_place'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views

@@ -1,11 +1,18 @@
 .col-md-9
   %h1.text-center Your Repositories
-.col-md-3
+.col-md-3.margin-bottom
   = image_tag(current_user.avatar_url, class: "img-rounded profile-picture")
   %h3.light= current_user.login
-  %h4.light Your Language Breakdown
+  %h4.light
+    Language Breakdown
+    %span.octicon.octicon-info{ data: { toggle: "tooltip", placement: "top", title: "Your usage of languages across your repositories." } }
   #user-languages-loading
     Calculating
     .progress
       .progress-bar.progress-bar-striped-active#user-language-bar
   #user-languages
+  %h4.light
+    Preferred Keywords
+    %span.octicon.octicon-info{ data: { toggle: "tooltip", placement: "top", title: "Keywords boost the scores of repositories in which they are found." } }
+  %p.light Choose 5 keywords in order of most desirable to least desirable.
+  = render partial: "keywords"

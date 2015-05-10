@@ -8,6 +8,8 @@ progress_bar = ->
   width = (width + 10) % 110
 
 $ ->
+  $('[data-toggle="tooltip"]').tooltip()
+  jQuery(".best_in_place").best_in_place();
   if($('#user-languages').length)
     progress = setInterval(progress_bar, 500)
     $.ajax("/languages")
