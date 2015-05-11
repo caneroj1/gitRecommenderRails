@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def repositories
     @repositories = Recommender::OctokitActions.user_repos(current_user)
+
     respond_to do |format|
       format.js
     end

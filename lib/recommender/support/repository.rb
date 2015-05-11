@@ -26,12 +26,23 @@ class Recommender::Support::Repository
       client.stargazers(repository.full_name)
       stargazer_response = client.last_response
 
-      Repository.new( id: repository.id,
-                      name: repository.full_name,
-                      watchers: get_number_of_watchers(stargazer_response),
-                      pushed_at: get_last_commit_time(repository.full_name, repository["default_branch"], client),
-                      readme_url: client.readme(repository.full_name).download_url,
-                      belongs_to_on_github: github_id)
+      readme_url = nil
+      begin
+        readme_url = client.readme(repository.full_name).download_url
+      rescue => e
+        puts "Error: #{e}"
+      end
+
+      if readme_url
+        Repository.new( id: repository.id,
+                        name: repository.full_name,
+                        watchers: get_number_of_watchers(stargazer_response),
+                        pushed_at: get_last_commit_time(repository.full_name, repository["default_branch"], client),
+                        readme_url: readme_url,
+                        belongs_to_on_github: github_id)
+      else
+        false
+      end
     end
   end
 end

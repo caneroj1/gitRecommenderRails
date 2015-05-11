@@ -9,5 +9,15 @@
 
 .language-bar
 {
-  width: 100%;
+  width: 100% !important;
+}
+
+.repo-row
+{
+  border-top: 1px solid #b5b5b5;
+}
+
+.repo-link
+{
+  font-size: 24px;
 }

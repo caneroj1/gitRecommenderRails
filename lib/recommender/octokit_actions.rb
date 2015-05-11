@@ -32,7 +32,8 @@ class Recommender::OctokitActions
             current_user.repositories << saved_repo
             saved_repo.update(belongs_to_on_github: current_user.github_id)
           elsif user_does_not_own_repo(current_user, saved_repo)
-            current_user.repositories << Recommender::Support::Repository.add(repo, current_user.github_id, @client)
+            repo_to_add = Recommender::Support::Repository.add(repo, current_user.github_id, @client)
+            current_user.repositories << repo_to_add if repo_to_add
           end
         end
 

@@ -1,6 +1,7 @@
 .col-md-12
   .col-md-4
-    %h4= repository.name
+    %a.repo-link{ href: "https://github.com/#{repository.name}" }
+      = repository.name
 
     %div{ id: "repo-languages-#{repository.id}" }
       %div
@@ -9,3 +10,15 @@
           .progress-bar.progress-bar-striped.progress-bar-success.active.language-bar
         :javascript
           $.ajax("repositories/#{repository.id}/languages");
+  .col-md-4.col-md-offset-2
+    %h4.light
+      = octicon("calendar")
+      Last Commit Date:
+      = repository.pushed_at.strftime("%-m/%d/%Y")
+    %h4.light
+      = octicon("star")
+      Stars:
+      = repository.watchers
+    %h4.light
+.col-md-8
+  %hr.repo-row

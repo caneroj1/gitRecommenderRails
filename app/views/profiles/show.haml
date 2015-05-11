@@ -1,9 +1,14 @@
 .col-md-9
   %h1.text-center Your Repositories
   %hr
+  #user-repositories-loading
+    Loading your repository information
+    .progress
+      .progress-bar.progress-bar-striped.progress-bar-success.active.language-bar
   #user-repositories
 .col-md-3.margin-bottom
   = image_tag(current_user.avatar_url, class: "img-rounded profile-picture")
+  %button.btn.btn-warning.logout.btn-block Log Out
   %h3.light#user{ data: { user: current_user.github_id } }= current_user.login
   %h4.light
     Language Breakdown
