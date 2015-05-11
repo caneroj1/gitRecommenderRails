@@ -24,5 +24,10 @@ module GitRecommender
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.precompile += %w(*.svg *.eot *.woff *.ttf *.json)
     config.autoload_paths << Rails.root.join('lib')
+
+    config.generators do |g|
+      g.test_framework :rspec, fixture: true
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+    end
   end
 end

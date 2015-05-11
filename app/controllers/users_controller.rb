@@ -22,6 +22,6 @@ class UsersController < ApplicationController
 
   protected
   def user_params
-    params.require(:user).permit(:keyword_one, :keyword_tw0,:keyword_three, :keyword_four, :keyword_five)
+    params.require(:user).permit(:keyword_one, :keyword_two,:keyword_three, :keyword_four, :keyword_five)
   end
 end
