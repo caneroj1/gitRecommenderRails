@@ -1,0 +1,17 @@
+<% if !@languages.empty? %>
+  $('#repo-languages-<%= @id %>').html("<%= escape_javascript(render partial: 'repo_languages', locals: { id: @id } ) %>");
+  <% colors = JSON.parse(File.read("vendor/assets/json/colors.json")) %>
+  data = [
+    <% @languages.each do |language, value| %>
+      {
+        value: <%= value %>,
+        color: "<%= colors[language.to_s] %>",
+        highlight: "<%= colors[language.to_s] %>",
+        label: "<%= language %>"
+      },
+    <% end %>
+  ];
+  myNewChart = new Chart($('#<%= @id %>').get(0).getContext("2d")).Doughnut(data);
+<% else %>
+$('#repo-languages-<%= @id %>').html("<p class='light'>No language information available for this repository.</p>");
+<% end %>

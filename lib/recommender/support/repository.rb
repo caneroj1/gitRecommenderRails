@@ -13,11 +13,13 @@ class Recommender::Support::Repository
       client.branch(repo_name, main_branch)[:commit][:commit][:author][:date]
     end
 
-    def get_languages(api_response)
+    def get_languages(access_token, repository_id)
+      client = Octokit::Client.new(access_token: access_token)
       language_hash = {}
 
-      api_response.each { |key, value| language_hash.store(key, value) }
-      language_hash
+      client.languages(repository_id).each { |key, value| language_hash.store(key, value) }
+      sum = language_hash.values.inject(0.0) { |value, sum| sum += value }
+      language_hash.to_a.map { |arr| [arr[0], (arr[1] / sum).round(2)] }.to_h
     end
 
     def add(repository, github_id, client)
@@ -28,7 +30,6 @@ class Recommender::Support::Repository
                       name: repository.full_name,
                       watchers: get_number_of_watchers(stargazer_response),
                       pushed_at: get_last_commit_time(repository.full_name, repository["default_branch"], client),
-                      languages: get_languages(client.languages(repository.full_name)),
                       readme_url: client.readme(repository.full_name).download_url,
                       belongs_to_on_github: github_id)
     end
