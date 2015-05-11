@@ -1,12 +1,27 @@
 class Recommender::Languages
   class << self
-    def user_languages(current_user)
-      @client = Octokit::Client.new(access_token: current_user.access_token)
+    def get_repositories(access_token)
+      @client = Octokit::Client.new(access_token: access_token)
       @client.repositories
+    end
+
+    def user_languages(current_user)
+      get_repositories(current_user.access_token)
+      parse_repo_languages(@client.last_response)
+    end
+
+    def user_repos(current_user)
+      get_repositories(current_user.access_token)
       parse_repos(@client.last_response)
     end
 
     def parse_repos(api_response)
+      api_response.data.each do |repo|
+
+      end
+    end
+
+    def parse_repo_languages(api_response)
       languages = {}
       total = 0.0
 

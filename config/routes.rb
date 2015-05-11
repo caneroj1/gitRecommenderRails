@@ -17,9 +17,14 @@ Rails.application.routes.draw do
   # Singleton Resource for User Profiles
   get 'profile', to: "profiles#show"
 
-  # Routes for computing language breakdowns for users and repositories
-  get 'languages', to: "users#languages", defaults: { format: :js }
-  get 'repo/languages', to: "repositories#languages", defaults: { format: :js }
+  # Route for computing language breakdowns for users
+  get 'users/:github_id/languages', to: "users#languages", defaults: { format: :js }
+  # Route to get all of the repositories for a user
+  get 'users/:github_id/repositories', to: "users#repositories", defaults: { format: :js }
+  # Route for computing language breakdowns for repositories
+  get 'repositories/:id/languages', to: "repositories#languages", defaults: { format: :js }
+  # Show route for repositories
+  get 'repositories/:id', to: "repositories#show"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

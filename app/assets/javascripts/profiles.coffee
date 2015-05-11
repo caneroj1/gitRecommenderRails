@@ -6,6 +6,7 @@ $ ->
   $('[data-toggle="tooltip"]').tooltip()
   jQuery(".best_in_place").best_in_place()
   if($('#user-languages').length)
-    $.ajax("/languages")
+    github_id = $('#user').data('user')
+    $.ajax("/users/" + github_id + "/languages")
     .always(->
       clearInterval(progress))
