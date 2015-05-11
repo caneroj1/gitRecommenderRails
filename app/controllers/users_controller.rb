@@ -5,7 +5,6 @@ class UsersController < ApplicationController
         format.html
         format.js
         format.json { render json: current_user, status: 202 }
-
       end
     else
       render '/profile'
@@ -13,8 +12,15 @@ class UsersController < ApplicationController
   end
 
   def languages
-    @languages = Recommender::Languages.user_languages(current_user)
+    @languages = Recommender::OctokitActions.user_languages(current_user)
     current_user.update(language_breakdown: @languages)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def repositories
+    @repositories = Recommender::OctokitActions.user_repos(current_user)
     respond_to do |format|
       format.js
     end

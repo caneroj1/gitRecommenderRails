@@ -1,0 +1,5 @@
+<% colors = JSON.parse(File.read("vendor/assets/json/colors.json")) %>
+<% @repositories.each do |repo| %>
+  $('#user-repositories').append("<%= escape_javascript(render partial: 'repository', locals: { repository: repo, colors: colors } ) %>")
+<% end %>
+$('#user-repositories-loading').remove();

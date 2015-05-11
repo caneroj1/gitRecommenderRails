@@ -3,6 +3,10 @@ require "rails_helper"
 RSpec.describe User do
   let(:user) { FactoryGirl.create(:user) }
 
+  context 'associations' do
+    it { should have_many :repositories }
+  end
+
   context 'attributes' do
     it 'should have a login' do
       expect(user.login).to_not be_nil

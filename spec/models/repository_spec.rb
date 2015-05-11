@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe Repository, type: :model do
   let(:repository) { FactoryGirl.create(:repository) }
 
+  context 'associations' do
+    it { should belong_to :user }
+  end
+
   context 'attributes' do
     it 'should have a readme_url' do
       expect(repository.readme_url).to_not be_nil

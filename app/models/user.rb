@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   # keyword_five: least desirable keyword
   # language_breakdown: array of percentages for each language
   # avatar_url: link to the github avatar
-  
+
   serialize(:language_breakdown, Array)
+  has_many :repositories
 end

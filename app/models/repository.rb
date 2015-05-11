@@ -8,5 +8,6 @@ class Repository < ActiveRecord::Base
   # languages: hash of the language breakdown for the repository
   # is_private: boolean of whether the repo is private or not
 
-  validates :readme_url, :readme_text, presence: true
+  validates :readme_url, presence: true
+  belongs_to :user
 end
