@@ -7,4 +7,12 @@ module Support
       end
     end
   end
+
+  class Repository
+    class << self
+      def languages
+        { "Ruby": 0.25, "Java": 0.25, "C": 0.25, "C++": 0.25 }
+      end
+    end
+  end
 end

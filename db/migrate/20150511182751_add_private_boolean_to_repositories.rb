@@ -1,5 +1,5 @@
 class AddPrivateBooleanToRepositories < ActiveRecord::Migration
   def change
-    add_column :repositories, :private, :boolean
+    add_column :repositories, :is_private, :boolean, default: false
   end
 end
