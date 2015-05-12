@@ -8,4 +8,8 @@ module ProfilesHelper
       octicon("repo", true)
     end
   end
+
+  def repository_description(repo)
+    repo.description || "No description given"
+  end
 end

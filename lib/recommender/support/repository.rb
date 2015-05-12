@@ -41,6 +41,7 @@ class Recommender::Support::Repository
                         readme_url: readme_url,
                         is_forked: repository.fork,
                         is_private: repository.private,
+                        description: repository.description,
                         belongs_to_on_github: github_id)
       else
         false
