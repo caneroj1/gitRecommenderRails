@@ -2,8 +2,6 @@
 # a trie is a tree-like structure useful for efficient searching of large bodies of text.
 # searching is accomplished in O(n) time for a given string, where n is the length of the string.
 # this is accomplished at a tradeoff, construction of a trie takes more time.
-# i think a trie will be better to use than Ruby's #include? method (Rabin-Karp) since there will be repeated queries.
-# the trie will be constructed out of the readme's and the searches will be the keywords
 class Recommender::Support::Trie
   attr_accessor :corpus, :trie_nodes
 
@@ -24,6 +22,7 @@ class Recommender::Support::Trie
   def construct
     leave_alphanumeric_characters
     split_corpus.each { |word| add(word) }
+    self
   end
 
   def add(word)
@@ -56,7 +55,7 @@ class Recommender::Support::Trie
 
   private
   def leave_alphanumeric_characters
-    @corpus.gsub!(REGEX, "").upcase!
+    @corpus = @corpus.gsub(REGEX, " ").upcase
   end
 
   def split_corpus

@@ -11,4 +11,12 @@ class User < ActiveRecord::Base
 
   serialize(:language_breakdown, Array)
   has_many :repositories
+
+  def user_keywords
+    [ keyword_one,
+      keyword_two,
+      keyword_three,
+      keyword_four,
+      keyword_five ]
+  end
 end

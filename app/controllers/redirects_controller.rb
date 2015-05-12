@@ -21,13 +21,9 @@ class RedirectsController < ApplicationController
   protected
   # send a post request to the oauth access token url, and then parse the request body
   def authenticate_via_github
-    uri = URI.parse("https://github.com/login/oauth/access_token")
-    uri.query = URI.encode_www_form(post_params)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    request = Net::HTTP::Post.new(uri.request_uri)
-    get_access_token(http.request(request).body)
+    uri = "https://github.com/login/oauth/access_token"
+    body = Recommender::Support::Request.makeSecureGet(uri, post_params)
+    get_access_token(body)
   end
 
   # parse the request body in order to get the access token
