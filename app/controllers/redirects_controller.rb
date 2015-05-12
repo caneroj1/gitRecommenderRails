@@ -53,7 +53,13 @@ class RedirectsController < ApplicationController
   # using the github API result we obtained through 'user = Octokit::Client.new(access_token: access_token).user',
   # we either try to find a user that we have already created or create a new one, and sign them in.
   def sign_in_or_sign_up_user(github_result, access_token)
-    user = User.try(:find_by_github_id, github_result.id) || User.create(user_params(github_result, access_token))
+    user = User.try(:find_by_github_id, github_result.id)
+    if user
+      user.update(access_token: access_token)
+    else
+      user = User.create(user_params(github_result, access_token))
+    end
+
     session[:id] = user.id
   end
 end

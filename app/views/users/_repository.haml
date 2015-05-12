@@ -1,7 +1,9 @@
 .col-md-12
-  .col-md-4
-    %a.repo-link{ href: "https://github.com/#{repository.name}" }
-      = repository.name
+  .col-md-6
+    %div
+      = octicon(repository.is_forked ? "repo-forked" : "repo", true)
+      %a.repo-link.adhere-top{ href: "https://github.com/#{repository.name}" }
+        = repository.name
 
     %div{ id: "repo-languages-#{repository.id}" }
       %div
@@ -10,7 +12,7 @@
           .progress-bar.progress-bar-striped.progress-bar-success.active.language-bar
         :javascript
           $.ajax("repositories/#{repository.id}/languages");
-  .col-md-4.col-md-offset-2
+  .col-md-5
     %h4.light
       = octicon("calendar")
       Last Commit Date:
