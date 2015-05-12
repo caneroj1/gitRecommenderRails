@@ -39,6 +39,8 @@ class Recommender::Support::Repository
                         watchers: get_number_of_watchers(stargazer_response),
                         pushed_at: get_last_commit_time(repository.full_name, repository["default_branch"], client),
                         readme_url: readme_url,
+                        is_forked: repository.fork,
+                        is_private: repository.private,
                         belongs_to_on_github: github_id)
       else
         false

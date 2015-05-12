@@ -1,7 +1,7 @@
 .col-md-12
   .col-md-6
     %div
-      = octicon(repository.is_forked ? "repo-forked" : "repo", true)
+      = repository_icon(repository)
       %a.repo-link.adhere-top{ href: "https://github.com/#{repository.name}" }
         = repository.name
 
