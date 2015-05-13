@@ -11,9 +11,28 @@
       },
     <% end %>
   ];
-  myNewChart = new Chart($('#<%= @id %>').get(0).getContext("2d")).Doughnut(data);
+
+  legendString = "<ul class='doughnut-legend'>";
+  <% @languages.each do |language, value| %>
+    legendString += "<li style='font-weight:200; padding: 5px;'>";
+    legendString += "<span style='background-color: <%= colors[language.to_s] %>; color: rgba(255, 0, 0, 0); margin-right: 3px;'>";
+    legendString += "X";
+    legendString += "</span>";
+    legendString += "<%= language.to_s %>";
+    legendString += "</li>";
+  <% end %>
+  legendString += "</ul>";
+
+  options = {
+    legendTemplate: legendString
+  };
+
+  myNewChart = new Chart($('#<%= @id %>').get(0).getContext("2d")).Doughnut(data, options);
+  $('#<%= @id %>-legend').html(legendString);
 <% else %>
-$('#repo-languages-<%= @id %>').html("<p class='light'>No language information available for this repository.</p>");
+$('#<%= @id %>-legend').remove();
+$('#repo-languages-<%= @id %>').toggleClass("col-md-4 col-md-8");
+$('#repo-languages-<%= @id %>').html("<h5 class='light'>No language information available for this repository.</h5>");
 <% end %>
 
 <% if current_user.has_all_keywords? %>

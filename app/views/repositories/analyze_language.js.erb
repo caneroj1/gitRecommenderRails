@@ -8,7 +8,9 @@ if(totalScore === 200) {
   green = 30;
 }
 
-styleString = "background-color: rgb(" + red + ", " + green + ", 0); height:25px;"
+width = ((200 - totalScore)/200.0) * 100;
+
+styleString = "background-color: rgb(" + red + ", " + green + ", 0); width: " + width + "%; height:25px;"
 
 $("#score-<%= params[:id] %>").html("Favorability");
 $('#score-<%= params[:id] %>').after("<h4><p style='" + styleString + "'></h4>");

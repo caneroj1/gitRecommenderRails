@@ -1,3 +1,4 @@
+$('#user-repositories').append("<button class='recommend-btn btn btn-success btn-large btn-block'>Recommend Me Repositories</button>");
 <% @repositories.each do |repo| %>
   $('#user-repositories').append("<%= escape_javascript(render partial: 'repository', locals: { repository: repo }) %>")
 <% end %>

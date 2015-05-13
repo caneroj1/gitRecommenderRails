@@ -19,7 +19,7 @@
 @import "bootstrap-sprockets";
 
 // Import lumen variables
-@import "bootswatch/lumen/variables";
+@import "bootswatch/yeti/variables";
 
 // Then bootstrap itself
 @import "bootstrap";
@@ -28,4 +28,4 @@
 @import "base";
 
 // And finally bootswatch style itself
-@import "bootswatch/lumen/bootswatch";
+@import "bootswatch/yeti/bootswatch";

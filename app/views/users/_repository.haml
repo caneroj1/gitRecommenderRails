@@ -1,11 +1,12 @@
 .col-md-12
   .col-md-6
-    %div
+    %div.repo-top
       = repository_icon(repository)
       %a.repo-link.adhere-top{ href: "https://github.com/#{repository.name}" }
         = repository.name
 
-    %div{ id: "repo-languages-#{repository.id}" }
+    .col-md-4.legend{ id: "#{repository.id}-legend"}
+    .col-md-4.chart{ id: "repo-languages-#{repository.id}" }
       %div
         Calculating Languages
         .progress
@@ -13,17 +14,18 @@
         :javascript
           $.ajax("repositories/#{repository.id}/languages");
   .col-md-5
-    %h4.light
+    %h5.light
       = octicon("calendar")
       Last Commit Date:
       = repository.pushed_at.strftime("%-m/%d/%Y")
-    %h4.light
+    %h5.light
       = octicon("star")
       Stars:
       = repository.watchers
-    %h4.light
+    %h5.light
       = octicon("book")
       = repository_description(repository)
+    %br
     %h4.light{ id: "score-#{repository.id}" }
       Calculating The Score
       .progress
