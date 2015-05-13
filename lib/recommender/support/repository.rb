@@ -17,9 +17,7 @@ class Recommender::Support::Repository
       client = Octokit::Client.new(access_token: access_token)
       language_hash = {}
 
-      client.languages(repository_id).each { |key, value| language_hash.store(key, value) }
-      sum = language_hash.values.inject(0.0) { |value, sum| sum += value }
-      language_hash.to_a.map { |arr| [arr[0], (arr[1] / sum).round(2)] }.to_h
+      client.languages(repository_id).to_h
     end
 
     def add(repository, github_id, client)

@@ -1,0 +1,2 @@
+$("#score-<%= params[:id] %>").html("<p style'color:red;'>" + ($("#score-<%= params[:id] %>").data().keyword + <%= @language_score %>) + "</p>");
+$("#score-<%= params[:id] %>").data("language", <%= @language_score %>);

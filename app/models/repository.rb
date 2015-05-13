@@ -10,4 +10,17 @@ class Repository < ActiveRecord::Base
 
   validates :readme_url, presence: true
   belongs_to :user
+
+  def language_breakdown
+    total = language_total
+    languages.to_a.map { |lang| [lang[0], lang[1].to_i / language_total] }
+  end
+
+  def language_total
+    language_values.inject(0.0) { |sum, next_value| sum += next_value }
+  end
+
+  def language_values
+    languages.values.map { |value| value.to_i }
+  end
 end
