@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get 'users/:github_id/repositories', to: "users#repositories", defaults: { format: :js }
   # Route for computing language breakdowns for repositories
   get 'repositories/:id/languages', to: "repositories#languages", defaults: { format: :js }
+  # Route for analyzing the readme of a repository
+  get 'repositories/:id/readme', to: "repositories#analyze_readme", defaults: { format: :js }
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

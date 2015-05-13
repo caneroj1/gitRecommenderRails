@@ -15,3 +15,9 @@
 <% else %>
 $('#repo-languages-<%= @id %>').html("<p class='light'>No language information available for this repository.</p>");
 <% end %>
+
+<% if current_user.has_all_keywords? %>
+  <% puts "here" %>
+  $('#repo-languages-<%= @id %>');
+  $.ajax("/repositories/<%= @id %>/readme");
+<% end %>
