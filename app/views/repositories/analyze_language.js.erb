@@ -1,2 +1,14 @@
-$("#score-<%= params[:id] %>").html("<p style'color:red;'>" + ($("#score-<%= params[:id] %>").data().keyword + <%= @language_score %>) + "</p>");
 $("#score-<%= params[:id] %>").data("language", <%= @language_score %>);
+totalScore = ($("#score-<%= params[:id] %>").data().keyword + <%= @language_score %>)
+red = parseInt(totalScore);
+green = parseInt(255 - totalScore);
+
+if(totalScore === 200) {
+  red = 220;
+  green = 30;
+}
+
+styleString = "background-color: rgb(" + red + ", " + green + ", 0); height:25px;"
+
+$("#score-<%= params[:id] %>").html("Favorability");
+$('#score-<%= params[:id] %>').after("<h4><p style='" + styleString + "'></h4>");

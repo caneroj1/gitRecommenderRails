@@ -17,7 +17,7 @@ $('#repo-languages-<%= @id %>').html("<p class='light'>No language information a
 <% end %>
 
 <% if current_user.has_all_keywords? %>
-  <% puts "here" %>
-  $('#repo-languages-<%= @id %>');
   $.ajax("/repositories/<%= @id %>/readme");
+<% else %>
+  $('#score-<%= @id %>').html("Choose 5 keywords then refresh the page in order to score this repository.")
 <% end %>

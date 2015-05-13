@@ -13,7 +13,7 @@ class Repository < ActiveRecord::Base
 
   def language_breakdown
     total = language_total
-    languages.to_a.map { |lang| [lang[0], lang[1].to_i / language_total] }
+    languages.to_a.map { |lang| [lang[0], (lang[1].to_i / language_total).round(2)] }
   end
 
   def language_total

@@ -1,3 +1,2 @@
-$("#score-<%= params[:id] %>").html("<p><%= @keyword_score %></p>");
 $("#score-<%= params[:id] %>").data("keyword", <%= @keyword_score %>);
 $.ajax("/repositories/<%= params[:id] %>/language")
