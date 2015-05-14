@@ -28,6 +28,10 @@ Rails.application.routes.draw do
   # Route for analyzing the language of a repository
   get 'repositories/:id/language', to: "repositories#analyze_language", defaults: { format: :js }
 
+  # the pièce de résistance!
+  # Route to get a recommendation
+  get 'recommend', to: "recommendations#recommend", defaults: { format: :js }
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
