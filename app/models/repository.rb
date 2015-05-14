@@ -23,4 +23,10 @@ class Repository < ActiveRecord::Base
   def language_values
     languages.values.map { |value| value.to_i }
   end
+
+  def score(user)
+    readme_score = Recommender::RecommenderActions.analyze_readme(user, id)
+    language_score = Recommender::RecommenderActions.analyze_language(user, id)
+    readme_score + language_score
+  end
 end

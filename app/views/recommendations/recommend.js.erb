@@ -1,0 +1,7 @@
+finalString = "";
+<% @top_five.each do |result| %>
+  scoreString = "<h4>Score: <%= result[0] %></h4>";
+  inspectString = "<p><%= result[1].name %></p><p><%= result[1].languages %></p><hr/>";
+  finalString += (scoreString + inspectString);
+<% end %>
+$('.recommend-btn').before(finalString);

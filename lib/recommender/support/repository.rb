@@ -1,5 +1,12 @@
 class Recommender::Support::Repository
   class << self
+    def score(repositories, user)
+      repos_and_scores = []
+
+      repositories.each { |repo| repos_and_scores << [repo.score(user), repo] }
+      repos_and_scores.sort { |a, b| a[0] <=> b[0] }[0..4]
+    end
+
     def get_number_of_watchers(api_response)
       return 0 if api_response.data.count.eql?(0)
       return api_response.data.count if api_response.rels.empty?
