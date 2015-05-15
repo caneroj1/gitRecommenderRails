@@ -1,0 +1,41 @@
+<div class="col-md-12">
+  <div class="col-md-6">
+    <div class="repo-top">
+      <%= repository_icon(repository[1]) %>
+      <a class="repo-link.adhere-top" href="https://github.com/<%= repository[1].name %>">
+        <%= repository[1].name %>
+      </a>
+    </div>
+    <div class="col-md-4 legend" id="<%= repository[1].id %>-legend"></div>
+    <div class="col-md-8 chart modal-chart"  id="repo-languages-<%= repository[1].id %>">
+      <canvas id= "<%= repository[1].id %>-languages", width: "160px;", height: "144px;"></canvas>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <h5 class="light">
+      <%= octicon("calendar") %>
+      Last Commit Date:
+      <%= repository[1].pushed_at.strftime("%-m/%d/%Y") %>
+    </h5>
+    <h5 class="light">
+      <%= octicon("star") %>
+      Stars:
+      <%= number_with_delimiter(repository[1].watchers, delimiter: ',') %>
+    </h5>
+    <h5 class="light">
+      <%= octicon("book") %>
+      <%= repository_description(repository[1]) %>
+    </h5>
+    <br/>
+    <h4 class="light" id="score-<%= repository[1].id %>" >
+      Favorability
+    </h4>
+    <h4>
+      <p style="<%= favorability_string(repository[0].to_i) %>"></p>
+    </h4>
+  </div>
+</div>
+<div class="col-md-8">
+  <hr class="repo-row"/>
+
+</div>

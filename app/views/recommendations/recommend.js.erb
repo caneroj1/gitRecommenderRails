@@ -1,7 +1,43 @@
-finalString = "";
-<% @top_five.each do |result| %>
-  scoreString = "<h4>Score: <%= result[0] %></h4>";
-  inspectString = "<p><%= result[1].name %></p><p><%= result[1].languages %></p><hr/>";
-  finalString += (scoreString + inspectString);
-<% end %>
-$('.recommend-btn').before(finalString);
+<% colors = JSON.parse(File.read("vendor/assets/json/colors.json")) %>
+
+$('#recommendations').html("<%= escape_javascript render partial: 'recommendation_modal', locals: { colors: colors } %>")
+$('#recommendations-modal').modal('toggle');
+$('#recommendations-modal').on('shown.bs.modal', function (event) {
+  <% @top_five.each do |repository| %>
+    <% if !repository[1].languages.empty? %>
+      data<%= repository[1].id %> = [
+        <% repository[1].language_breakdown.each do |language| %>
+          {
+            value: "<%= language[1] %>",
+            color: "<%= colors[language[0]] %>",
+            highlight: "<%= colors[language[0]] %>",
+            label: "<%= language[0] %>",
+          },
+        <% end %>
+      ];
+
+      legendString = "<ul class='doughnut-legend'>";
+      <% repository[1].languages.each do |language, value| %>
+        legendString += "<li style='font-weight:200; padding: 5px;'>";
+        legendString += "<span style='background-color: <%= colors[language.to_s] %>; color: rgba(255, 0, 0, 0); margin-right: 3px;'>";
+        legendString += "X";
+        legendString += "</span>";
+        legendString += "<%= language.to_s %>";
+        legendString += "</li>";
+      <% end %>
+      legendString += "</ul>";
+
+      options = {
+        legendTemplate: legendString
+      };
+      $('#<%= repository[1].id %>-legend').html(legendString);
+      myNewChart<%= repository[1].id %> = new Chart($('#<%= repository[1].id %>-languages').get(0).getContext("2d")).Doughnut(data<%= repository[1].id %>);
+      legendString = "";
+    <% else %>
+      $('#<%= repository[1].id %>-legend').remove();
+      $('#repo-languages-<%= repository[1].id %>').removeClass("col-md-4 modal-chart");
+      $('#repo-languages-<%= repository[1].id %>').addClass("col-md-8")
+      $('#repo-languages-<%= repository[1].id %>').html("<h5 class='light'>No language information available for this repository.</h5>");
+    <% end %>
+  <% end %>
+});

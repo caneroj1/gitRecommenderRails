@@ -33,3 +33,13 @@ hr
   position: absolute;
   top: 0;
 }
+
+.modal-dialog
+{
+  width: 800px !important;
+}
+
+.modal-body
+{
+  overflow: auto;
+}

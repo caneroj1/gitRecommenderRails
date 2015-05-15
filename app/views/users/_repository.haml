@@ -21,7 +21,7 @@
     %h5.light
       = octicon("star")
       Stars:
-      = repository.watchers
+      = number_with_delimiter(repository.watchers, delimiter: ',')
     %h5.light
       = octicon("book")
       = repository_description(repository)
