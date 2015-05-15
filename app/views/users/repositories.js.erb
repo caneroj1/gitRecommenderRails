@@ -1,5 +1,8 @@
-$('#user-repositories').append('<%= link_to "Recommend Me Repositories", recommend_path, id: "recommend-button", class: "recommend-btn btn btn-success btn-large btn-block", remote: true %>');
-$('#recommend-button').on('click', function() { $('#recommend-button').addClass('disabled'); } );
+$('#user-repositories').append('<div id="recommend-progress" class="progress"><div class="progress-bar progress-bar-striped progress-bar-info active language-bar"></div></div><%= link_to "Recommend Me Repositories", recommend_path, id: "recommend-button", class: "recommend-btn btn btn-success btn-large btn-block", remote: true %>');
+$('#recommend-button').on('click', function()
+  { $('#recommend-button').addClass('disabled');
+  $('#recommend-progress').css('display', 'block');
+});
 <% @repositories.each do |repo| %>
   $('#user-repositories').append("<%= escape_javascript(render partial: 'repository', locals: { repository: repo }) %>")
 <% end %>

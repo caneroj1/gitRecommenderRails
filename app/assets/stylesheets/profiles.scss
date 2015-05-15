@@ -63,7 +63,6 @@
 
 .recommend-btn
 {
-  margin-top: 5%;
   margin-bottom: 5% !important;
 }
 
@@ -94,4 +93,9 @@
 .modal-chart
 {
   margin-left: -15%;
+}
+
+#recommend-progress
+{
+  display: none;
 }
