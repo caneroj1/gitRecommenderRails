@@ -1,7 +1,9 @@
 class Recommender::RecommenderActions
   class << self
-    def analyze_language(current_user, repository_id)
-      repo = Repository.find(repository_id)
+    SECONDS_TO_DAYS_FACTOR =  86400
+
+    def analyze_language(current_user, repository_id = nil, repository = nil)
+      repo = Repository.find_by_id(repository_id) || repository
       user_languages = current_user.language_breakdown
       repo_languages = repo.language_breakdown
       merged_map = user_languages.to_h.merge(repo_languages.to_h) { |key, v1, v2| (v1 - v2).abs }
@@ -13,9 +15,9 @@ class Recommender::RecommenderActions
     end
 
 
-    def analyze_readme(current_user, repository_id)
+    def analyze_readme(current_user, repository_id = nil, repository = nil)
       client = Octokit::Client.new(access_token: current_user.access_token)
-      repo = Repository.find(repository_id)
+      repo = Repository.find_by_id(repository_id) || repository
 
       readme_content = Recommender::Support::Readme.get_readme_content(repo, client).upcase
       update_repository_for_readme(readme_content, repo)
@@ -28,6 +30,25 @@ class Recommender::RecommenderActions
       end
 
       keyword_score
+    end
+
+    def analyze_stars(stars)
+      if stars <= 1
+        0
+      else
+        (100 / Math.log(stars)).to_i
+      end
+    end
+
+    def analyze_commit_date(date)
+      current_time = Time.now.getutc
+      day_difference = ((current_time - date).to_i) / SECONDS_TO_DAYS_FACTOR
+      normalized = normalize_date(day_difference)
+      (100 * normalized).to_i
+    end
+
+    def normalize_date(value)
+      (1 - Math.exp(-Math.log10(value)))
     end
 
     def update_repository_for_readme(readme, repo)

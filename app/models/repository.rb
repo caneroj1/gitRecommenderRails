@@ -25,8 +25,10 @@ class Repository < ActiveRecord::Base
   end
 
   def score(user)
-    readme_score = Recommender::RecommenderActions.analyze_readme(user, id)
-    language_score = Recommender::RecommenderActions.analyze_language(user, id)
-    readme_score + language_score
+    readme_score = Recommender::RecommenderActions.analyze_readme(user, nil, self)
+    language_score = Recommender::RecommenderActions.analyze_language(user, nil, self)
+    star_score = Recommender::RecommenderActions.analyze_stars(watchers)
+    commit_score = Recommender::RecommenderActions.analyze_commit_date(pushed_at)
+    readme_score + language_score + star_score + commit_score
   end
 end
